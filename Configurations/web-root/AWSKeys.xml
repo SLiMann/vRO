@@ -10,7 +10,6 @@
     </att>
     <att name="Account1" type="CompositeType(SecureString:SecureString,String:string):Account1" read-only="false">
       <value encoded="n"><![CDATA[{6:30:String=string#ThisIsMyCompositeString
-12:21:SecureString=SecureString#__NULL__
 }]]></value>
     </att>
   </atts>
