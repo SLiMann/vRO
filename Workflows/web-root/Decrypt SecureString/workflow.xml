@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ns2:workflow xmlns:ns2="http://vmware.com/vco/workflow" root-name="item1" object-name="workflow:name=generic" id="4999c612-8789-4d3f-9dd5-91744a2a8296" editor-version="2.0" version="0.0.0" api-version="6.0.0" restartMode="1" resumeFromFailedMode="0">
+    <display-name>Decrypt SecureString</display-name>
+    <position y="50.0" x="100.0"/>
+    <input/>
+    <output/>
+    <attrib name="slim_SecureString" type="SecureString" conf-id="da8c06c3-3a98-4749-ac34-8117fbcfe863" conf-key="SecureString"/>
+    <attrib name="slim_CompositeSecureString" type="CompositeType(SecureString:SecureString,String:string):Account1" conf-id="da8c06c3-3a98-4749-ac34-8117fbcfe863" conf-key="Account1"/>
+    <workflow-item name="item0" type="end" end-mode="0" comparator="0">
+        <in-binding/>
+        <out-binding/>
+        <position y="50.0" x="300.0"/>
+    </workflow-item>
+    <workflow-item name="item1" out-name="item0" type="task" comparator="0">
+        <display-name>Scriptable task</display-name>
+        <script encoded="false">System.log ("Account1 Composite Secure String: " + slim_CompositeSecureString )&#13;
+System.log ("Composite String: " + slim_CompositeSecureString_String )&#13;
+System.log ("Composite Secure String: " + slim_CompositeSecureString_SecureString )&#13;
+System.log ("Secure String: " + slim_SecureString)</script>
+        <in-binding>
+            <bind name="slim_CompositeSecureString" type="CompositeType(SecureString:SecureString,String:string):Account1" export-name="slim_CompositeSecureString"/>
+            <bind name="slim_CompositeSecureString_String" type="string" export-name="slim_CompositeSecureString.String"/>
+            <bind name="slim_CompositeSecureString_SecureString" type="SecureString" export-name="slim_CompositeSecureString.SecureString"/>
+            <bind name="slim_SecureString" type="SecureString" export-name="slim_SecureString"/>
+        </in-binding>
+        <out-binding/>
+        <description>Simple task with custom script capability.</description>
+        <position y="60.0" x="160.0"/>
+    </workflow-item>
+</ns2:workflow>
