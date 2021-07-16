@@ -6,7 +6,7 @@
       <value encoded="n"><![CDATA[__NULL__]]></value>
     </att>
     <att name="String" type="string" read-only="false">
-      <value encoded="n"><![CDATA[ThisIsMyString]]></value>
+      <value encoded="n"><![CDATA[ThisIsMyString1]]></value>
     </att>
     <att name="Account1" type="CompositeType(SecureString:SecureString,String:string):Account1" read-only="false">
       <value encoded="n"><![CDATA[{6:30:String=string#ThisIsMyCompositeString
