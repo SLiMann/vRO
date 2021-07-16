@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<config-element id="da8c06c3-3a98-4749-ac34-8117fbcfe863" version="0.0.0">
+  <display-name><![CDATA[AWSKeys]]></display-name>
+  <atts>
+    <att name="SecureString" type="SecureString" read-only="false">
+      <value encoded="n"><![CDATA[__NULL__]]></value>
+    </att>
+    <att name="String" type="string" read-only="false">
+      <value encoded="n"><![CDATA[ThisIsMyString]]></value>
+    </att>
+    <att name="Account1" type="CompositeType(SecureString:SecureString,String:string):Account1" read-only="false">
+      <value encoded="n"><![CDATA[{6:30:String=string#ThisIsMyCompositeString
+12:21:SecureString=SecureString#__NULL__
+}]]></value>
+    </att>
+  </atts>
+</config-element>
