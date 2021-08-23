@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<ns2:workflow xmlns:ns2="http://vmware.com/vco/workflow" root-name="item1" object-name="workflow:name=generic" id="5d440d7a-1314-4825-992c-d357b3894ae0" editor-version="2.0" version="0.0.1" api-version="6.0.0" restartMode="1" resumeFromFailedMode="0">
+<ns2:workflow xmlns:ns2="http://vmware.com/vco/workflow" root-name="item1" object-name="workflow:name=generic" id="5d440d7a-1314-4825-992c-d357b3894ae0" editor-version="2.0" version="0.0.2" api-version="6.0.0" restartMode="1" resumeFromFailedMode="0">
     <display-name>Schedule a Reboot</display-name>
     <position y="50.0" x="100.0"/>
     <input>
-        <param name="comp_input" type="CompositeType(vm:VC:VirtualMachine,date:Date):vmdate"/>
+        <param name="vm" type="CompositeType(Name:VC:VirtualMachine):VM"/>
+        <param name="date" type="Date"/>
     </input>
     <output/>
     <workflow-item name="item0" type="end" end-mode="0" comparator="0">
@@ -22,7 +23,7 @@ else  {
 }
 </script>
         <in-binding>
-            <bind name="waitDate" type="Date" export-name="comp_input.date">
+            <bind name="waitDate" type="Date" export-name="date">
                 <description>Wait date</description>
             </bind>
         </in-binding>
@@ -34,7 +35,7 @@ else  {
         <display-name>Reboot guest OS</display-name>
         <script encoded="false"></script>
         <in-binding>
-            <bind name="vm" type="VC:VirtualMachine" export-name="comp_input.vm">
+            <bind name="vm" type="VC:VirtualMachine" export-name="vm.Name">
                 <description>Virtual machine to reboot</description>
             </bind>
         </in-binding>
