@@ -1,16 +1,21 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<ns2:workflow xmlns:ns2="http://vmware.com/vco/workflow" root-name="item1" object-name="workflow:name=generic" id="5d440d7a-1314-4825-992c-d357b3894ae0" editor-version="2.0" version="0.0.3" api-version="6.0.0" restartMode="1" resumeFromFailedMode="0">
+<ns2:workflow xmlns:ns2="http://vmware.com/vco/workflow" root-name="item3" object-name="workflow:name=generic" id="5d440d7a-1314-4825-992c-d357b3894ae0" editor-version="2.0" version="0.0.4" api-version="6.0.0" restartMode="1" resumeFromFailedMode="0">
     <display-name>Schedule a Reboot</display-name>
     <position y="50.0" x="100.0"/>
     <input>
-        <param name="date" type="Date"/>
-        <param name="array_in" type="Array/VC:VirtualMachine"/>
+        <param name="in_0" type="CompositeType(vm:VC:VirtualMachine,date:Date):payload"/>
     </input>
     <output/>
+    <attrib name="vm" type="VC:VirtualMachine">
+        <value encoded="n"/>
+    </attrib>
+    <attrib name="date" type="Date">
+        <value encoded="n"/>
+    </attrib>
     <workflow-item name="item0" type="end" end-mode="0" comparator="0">
         <in-binding/>
         <out-binding/>
-        <position y="50.0" x="495.0"/>
+        <position y="50.0" x="555.0"/>
     </workflow-item>
     <workflow-item name="item1" out-name="item2" type="task" prototype-id="wait-until-date" content-mode="x" comparator="0">
         <display-name>Wait until date</display-name>
@@ -29,18 +34,39 @@ else  {
         </in-binding>
         <out-binding/>
         <description>Wait until date.</description>
-        <position y="60.0" x="150.0"/>
+        <position y="60.0" x="260.0"/>
     </workflow-item>
-    <workflow-item name="item2" out-name="item0" type="foreach" comparator="0">
+    <workflow-item name="item2" out-name="item0" type="link" linked-workflow-id="BD8080808080808080808080808080806CC180800122528313869552e41805bb1" comparator="0">
         <display-name>Reboot guest OS</display-name>
+        <script encoded="false"></script>
         <in-binding>
-            <bind name="vm" type="Array/VC:VirtualMachine" export-name="array_in">
+            <bind name="vm" type="VC:VirtualMachine" export-name="vm">
                 <description>Virtual machine to reboot</description>
             </bind>
-            <bind name="" type="Array/VC:VirtualMachine" export-name="*array_in"/>
         </in-binding>
         <out-binding/>
-        <reference id="BD8080808080808080808080808080806CC180800122528313869552e41805bb1" type="Workflow"/>
-        <position y="60.0" x="260.0"/>
+        <description> </description>
+        <position y="60.0" x="380.0"/>
+    </workflow-item>
+    <workflow-item name="item3" out-name="item1" type="task" comparator="0">
+        <display-name>Scriptable task</display-name>
+        <script encoded="false">System.log ("Date: " + in_0_date);&#13;
+System.log ("vm: " + in_0_vm);&#13;
+&#13;
+date = in_0_date;&#13;
+vm = in_0_vm;&#13;
+&#13;
+System.log ("Date: " + date);&#13;
+System.log ("vm: " + vm );</script>
+        <in-binding>
+            <bind name="in_0_date" type="Date" export-name="in_0.date"/>
+            <bind name="in_0_vm" type="VC:VirtualMachine" export-name="in_0.vm"/>
+        </in-binding>
+        <out-binding>
+            <bind name="date" type="Date" export-name="date"/>
+            <bind name="vm" type="VC:VirtualMachine" export-name="vm"/>
+        </out-binding>
+        <description>Simple task with custom script capability.</description>
+        <position y="60.0" x="170.0"/>
     </workflow-item>
 </ns2:workflow>
