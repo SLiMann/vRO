@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ns2:workflow xmlns:ns2="http://vmware.com/vco/workflow" root-name="item2" object-name="Workflow:name=generic" id="73a2d6f1-1606-425f-b3f2-75b7290f77ff" editor-version="2.0" version="0.2.1" api-version="6.0.0" allowed-operations="vef" restartMode="1" resumeFromFailedMode="0">
+    <display-name>Copy of Reboot guest OS</display-name>
+    <description>Reboots the virtual machines's guest operating system. Does not reset nonpersistent virtual machines. VMware Tools must be running.</description>
+    <ref-types>(VC:VirtualMachine)</ref-types>
+    <position y="30.0" x="180.0"/>
+    <input>
+        <param name="vm" type="VC:VirtualMachine">
+            <description>Virtual machine to reboot</description>
+        </param>
+        <param name="waitDate" type="Date"/>
+    </input>
+    <output/>
+    <workflow-item name="item0" out-name="item1" type="task" comparator="0">
+        <display-name>Reboot</display-name>
+        <script encoded="false">vm.rebootGuest();</script>
+        <in-binding>
+            <bind name="vm" type="VC:VirtualMachine" export-name="vm"/>
+        </in-binding>
+        <out-binding/>
+        <position y="130.0" x="140.0"/>
+    </workflow-item>
+    <workflow-item name="item1" type="end" end-mode="0" comparator="0">
+        <in-binding/>
+        <out-binding/>
+        <position y="160.0" x="180.0"/>
+    </workflow-item>
+    <workflow-item name="item2" out-name="item0" type="task" prototype-id="wait-until-date" content-mode="x" comparator="0">
+        <display-name>Wait until date</display-name>
+        <script encoded="false">//Auto-generated script 
+if (waitDate !== null) { 
+	System.waitUntil(waitDate,1000);
+}
+else  { 
+	throw "'waitDate' is NULL"; 
+}
+</script>
+        <in-binding>
+            <bind name="waitDate" type="Date" export-name="waitDate">
+                <description>Wait date</description>
+            </bind>
+        </in-binding>
+        <out-binding/>
+        <description>Wait until date.</description>
+        <position y="75.0" x="140.0"/>
+    </workflow-item>
+</ns2:workflow>
