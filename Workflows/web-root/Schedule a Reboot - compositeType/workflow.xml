@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<ns2:workflow xmlns:ns2="http://vmware.com/vco/workflow" root-name="item3" object-name="workflow:name=generic" id="a113ce40-234e-4291-a5ad-7e5403b34090" editor-version="2.0" version="0.0.8" api-version="6.0.0" allowed-operations="vef" restartMode="1" resumeFromFailedMode="0">
+<ns2:workflow xmlns:ns2="http://vmware.com/vco/workflow" root-name="item3" object-name="workflow:name=generic" id="a113ce40-234e-4291-a5ad-7e5403b34090" editor-version="2.0" version="0.0.9" api-version="6.0.0" allowed-operations="vef" restartMode="1" resumeFromFailedMode="0">
     <display-name>Schedule a Reboot - compositeType</display-name>
     <position y="50.0" x="120.0"/>
     <input>
@@ -50,7 +50,8 @@ else  {
     </workflow-item>
     <workflow-item name="item3" out-name="item1" type="task" comparator="0">
         <display-name>Scriptable task</display-name>
-        <script encoded="false">System.log("vm: " + in_0_vm)&#13;
+        <script encoded="false">System.log("Payload: " + in_0)&#13;
+System.log("vm: " + in_0_vm)&#13;
 System.log("date: " + in_0_date)&#13;
 &#13;
 vm = in_0_vm&#13;
@@ -61,6 +62,7 @@ System.log("waitDate: " + waitDate)</script>
         <in-binding>
             <bind name="in_0_vm" type="VC:VirtualMachine" export-name="in_0.vm"/>
             <bind name="in_0_date" type="Date" export-name="in_0.date"/>
+            <bind name="in_0" type="CompositeType(vm:VC:VirtualMachine,date:Date):payload" export-name="in_0"/>
         </in-binding>
         <out-binding>
             <bind name="vm" type="VC:VirtualMachine" export-name="vm"/>
