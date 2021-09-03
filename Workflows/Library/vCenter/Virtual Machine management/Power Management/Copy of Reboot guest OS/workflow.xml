@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<ns2:workflow xmlns:ns2="http://vmware.com/vco/workflow" root-name="item2" object-name="Workflow:name=generic" id="73a2d6f1-1606-425f-b3f2-75b7290f77ff" editor-version="2.0" version="0.2.1" api-version="6.0.0" allowed-operations="vef" restartMode="1" resumeFromFailedMode="0">
+<ns2:workflow xmlns:ns2="http://vmware.com/vco/workflow" root-name="item2" object-name="Workflow:name=generic" id="73a2d6f1-1606-425f-b3f2-75b7290f77ff" editor-version="2.0" version="0.2.2" api-version="6.0.0" allowed-operations="vef" restartMode="1" resumeFromFailedMode="0">
     <display-name>Copy of Reboot guest OS</display-name>
     <description>Reboots the virtual machines's guest operating system. Does not reset nonpersistent virtual machines. VMware Tools must be running.</description>
     <ref-types>(VC:VirtualMachine)</ref-types>
-    <position y="30.0" x="180.0"/>
+    <position y="40.0" x="180.0"/>
     <input>
         <param name="vm" type="VC:VirtualMachine">
             <description>Virtual machine to reboot</description>
